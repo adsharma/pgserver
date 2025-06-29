@@ -39,6 +39,11 @@ jobs:
           # for testing due to docker env issues
         with:
           python-version: '3.12'
+      - name: Install Required Packages
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt install -y bison flex
       - name: Install cibuildwheel
         run: |
           python -m pip install --upgrade pip
