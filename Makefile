@@ -2,6 +2,7 @@
 .PHONY: build wheel install-wheel install-dev clean test
 
 build:
+	yum install -y flex
 	$(MAKE) -d -C pgbuild all
 
 wheel: build
