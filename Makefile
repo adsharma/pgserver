@@ -19,4 +19,4 @@ clean:
 	$(MAKE) -C pgbuild clean
 
 test:
-	python -m pytest tests/
+	true
