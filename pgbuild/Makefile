@@ -6,14 +6,14 @@ BUILD := $(shell pwd)/pgbuild/
 all: pgvector postgres
 
 ### postgres
-POSTGRES_VERSION := 17-patches
-POSTGRES_SRC := postgres-patches17
+POSTGRES_VERSION := 17-stable
+POSTGRES_SRC := REL_17_STABLE
 POSTGRES_BLD := $(POSTGRES_SRC)
 
 
 ## extract
 $(POSTGRES_SRC)/configure:
-	git clone https://github.com/orioledb/postgres.git --branch patches17 --single-branch $(POSTGRES_SRC)
+	git clone https://github.com/postgres/postgres -b $(POSTGRES_SRC) --single-branch $(POSTGRES_SRC)
 	touch $(POSTGRES_SRC)/configure
 
 ## configure
