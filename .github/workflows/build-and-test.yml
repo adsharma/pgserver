@@ -11,21 +11,25 @@ on:
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}-${{ matrix.arch }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: macos-latest
+          - runner: macos-latest
+            os: macos-latest
             arch: arm64
             deployment-target: '11.0'
-          - os: ubuntu-latest
+          - runner: ubuntu-latest
+            os: ubuntu-latest
             arch: x86_64
             deployment-target: ''
-          - os: ubuntu-latest
+          - runner: ubuntu-24.04-arm
+            os: ubuntu-latest
             arch: aarch64
             deployment-target: ''
-          - os: windows-2022
+          - runner: windows-2022
+            os: windows-2022
             arch: AMD64
             deployment-target: ''
     steps:
