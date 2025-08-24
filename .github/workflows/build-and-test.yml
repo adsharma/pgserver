@@ -22,6 +22,9 @@ jobs:
           - os: ubuntu-latest
             arch: x86_64
             deployment-target: ''
+          - os: ubuntu-latest
+            arch: aarch64
+            deployment-target: ''
           - os: windows-2022
             arch: AMD64
             deployment-target: ''
