@@ -59,7 +59,11 @@ jobs:
         if: matrix.os == 'windows-2022'
         run: |
           choco install winflexbison3
-          echo "C:\ProgramData\chocolatey\bin" >> $env:GITHUB_PATH
+          echo "C:\\ProgramData\\chocolatey\\lib\\winflexbison3\\tools" >> $env:GITHUB_PATH
+          # Create symlinks so build tools can find bison/flex
+          New-Item -ItemType SymbolicLink -Path "C:\\ProgramData\\chocolatey\\bin\\bison.exe" -Target "C:\\ProgramData\\chocolatey\\lib\\winflexbison3\\tools\\win_bison.exe"
+          New-Item -ItemType SymbolicLink -Path "C:\\ProgramData\\chocolatey\\bin\\flex.exe" -Target "C:\\ProgramData\\chocolatey\\lib\\winflexbison3\\tools\\win_flex.exe"
+
       - name: Build postgres and pgvector
         if: ${{ matrix.os != 'ubuntu-latest' && ! steps.restore-postgres.outputs.cache-hit }}
         env:
